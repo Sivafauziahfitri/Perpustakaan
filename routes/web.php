@@ -11,10 +11,19 @@
 |
 */
 
+use Illuminate\Routing\RouteGroup;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'homeController@index')->name('home');
+
+Route::group(['prefix' => 'databuku'], function(){
+    Route::get('index', 'PerpusController@index')->name('databuku.index');
+
+    Route::get('create', 'PerpusController@create')->name('databuku.create');
+    
+});
